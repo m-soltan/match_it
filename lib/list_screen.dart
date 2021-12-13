@@ -45,9 +45,29 @@ class ListScreen extends StatelessWidget {
           itemCount: _itemCount,
           itemBuilder: (context, index) {
             dynamic i = _items[index];
-            return ListTile(
-              title: Text(i._s),
-            );
+            if (i is _Header) {
+              return ListTile(
+                leading: Container(
+                  height: 56,
+                  width: 56,
+                  child: Center(
+                    child: Text(
+                      i._s,
+                      style: Theme.of(context).textTheme.headline5,
+                    ),
+                  ),
+                ),
+              );
+            } else {
+              assert(i is _Item);
+              return ListTile(
+                leading: Container(
+                  height: 56,
+                  width: 56,
+                ),
+                title: Text(i._s),
+              );
+            }
           },
         ),
       ),
