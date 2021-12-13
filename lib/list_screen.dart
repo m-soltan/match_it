@@ -39,14 +39,17 @@ class ListScreen extends StatelessWidget {
           ),
         ],
       ),
-      body: ListView.builder(
-        itemCount: _itemCount,
-        itemBuilder: (context, index) {
-          dynamic i = _items[index];
-          return ListTile(
-            title: Text(i._s),
-          );
-        },
+      body: Scrollbar(
+        isAlwaysShown: true,
+        child: ListView.builder(
+          itemCount: _itemCount,
+          itemBuilder: (context, index) {
+            dynamic i = _items[index];
+            return ListTile(
+              title: Text(i._s),
+            );
+          },
+        ),
       ),
     );
   }
