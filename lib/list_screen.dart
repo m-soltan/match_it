@@ -41,8 +41,9 @@ class ListScreen extends StatelessWidget {
       ),
       body: Scrollbar(
         isAlwaysShown: true,
-        child: ListView.builder(
+        child: ListView.separated(
           itemCount: _itemCount,
+          separatorBuilder: (context, index) => Divider(),
           itemBuilder: (context, index) {
             dynamic i = _items[index];
             if (i is _Header) {
@@ -66,6 +67,17 @@ class ListScreen extends StatelessWidget {
                   width: 56,
                 ),
                 title: Text(i._s),
+                trailing: InkWell(
+                  onTap: () {},
+                  child: Container(
+                    height: 56,
+                    width: 32,
+                    child: Icon(
+                      Icons.more_vert,
+                      color: Theme.of(context).textTheme.bodyText2!.color,
+                    ),
+                  ),
+                ),
               );
             }
           },
