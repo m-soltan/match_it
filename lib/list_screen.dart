@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class _Header {
@@ -10,7 +11,6 @@ class _Item {
   _Item(this._s);
 }
 
-int _itemCount = 8;
 var _items = <dynamic> [
   _Header("B"),
   _Item("Banan"),
@@ -20,6 +20,9 @@ var _items = <dynamic> [
   _Item("Całka"),
   _Item("Ciasto"),
   _Item("Coś"),
+  _Header("D"),
+  _Item("Dodatkowy"),
+  _Item("Dopisać"),
 ];
 
 class ListScreen extends StatelessWidget {
@@ -42,7 +45,7 @@ class ListScreen extends StatelessWidget {
       body: Scrollbar(
         isAlwaysShown: true,
         child: ListView.separated(
-          itemCount: _itemCount,
+          itemCount: _items.length,
           separatorBuilder: (context, index) => Divider(),
           itemBuilder: (context, index) {
             dynamic i = _items[index];
@@ -68,7 +71,13 @@ class ListScreen extends StatelessWidget {
                 ),
                 title: Text(i._s),
                 trailing: InkWell(
-                  onTap: () {},
+                  onTap: () async {
+                    var choice = await showCupertinoModalPopup<Function>(
+                      context: context,
+                      builder: (_) => _ItemModal(),
+                    );
+                    choice?.call();
+                  },
                   child: Container(
                     height: 56,
                     width: 32,
@@ -83,6 +92,29 @@ class ListScreen extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+}
+
+class _ItemModal extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return CupertinoActionSheet(
+      actions: <Widget>[
+        CupertinoActionSheetAction(
+          child: Text("Dodaj do grupy"),
+          onPressed: () {},
+        ),
+        CupertinoActionSheetAction(
+          child: Text("Udostępnij"),
+          onPressed: () {},
+        ),
+        CupertinoActionSheetAction(
+          child: Text("Usuń"),
+          isDestructiveAction: true,
+          onPressed: () {},
+        ),
+      ],
     );
   }
 }
