@@ -1,6 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'calendar_screen.dart';
+import 'camera_screen.dart';
+import 'definition_screen.dart';
+import 'flashcards_screen.dart';
+import 'search_screen.dart';
+
 class _Header {
   final String _s;
   _Header(this._s);
@@ -32,13 +38,21 @@ class ListScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Lista definicji"),
         actions: <Widget>[
-          TextButton(
-            child: Icon(
+          IconButton(
+            icon: Icon(
               Icons.search,
               color: Theme.of(context).textTheme.bodyText2!.color,
             ),
-            onPressed: () {},
-
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return SearchScreen();
+                  },
+                  transitionsBuilder: _transitionsBuilder,
+                ),
+              );
+            },
           ),
         ],
       ),
@@ -70,6 +84,16 @@ class ListScreen extends StatelessWidget {
                   width: 56,
                 ),
                 title: Text(i._s),
+                onTap: () {
+                  Navigator.of(context).push(
+                    PageRouteBuilder(
+                      pageBuilder: (context, animation, secondaryAnimation) {
+                        return DefinitionScreen();
+                      },
+                      transitionsBuilder: _transitionsBuilder,
+                    ),
+                  );
+                },
                 trailing: InkWell(
                   onTap: () async {
                     var choice = await showCupertinoModalPopup<Function>(
@@ -98,7 +122,16 @@ class ListScreen extends StatelessWidget {
           Icons.camera_alt,
           color: Colors.black,
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).push(
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) {
+                return CameraScreen();
+              },
+              transitionsBuilder: _transitionsBuilder,
+            )
+          );
+        },
       ),
       bottomNavigationBar: BottomAppBar(
         shape: CircularNotchedRectangle(),
@@ -107,17 +140,52 @@ class ListScreen extends StatelessWidget {
             Container(height: 48, width: 12),
             IconButton(
               icon: Icon(Icons.list),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return FlashcardsScreen();
+                    },
+                    transitionsBuilder: _transitionsBuilder,
+                  ),
+                );
+              },
             ),
             Spacer(),
             IconButton(
               icon: Icon(Icons.calendar_today),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (context, animation, secondaryAnimation) {
+                      return CalendarScreen();
+                    },
+                    transitionsBuilder: _transitionsBuilder,
+                  ),
+                );
+              },
             ),
             Container(height: 48, width: 12),
           ],
         ),
       ),
+    );
+  }
+
+  SlideTransition _transitionsBuilder(
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child
+  ) {
+
+    // change the begin offset to slide in from a different direction
+    var tween = Tween(begin: Offset(1.0, 0.0), end: Offset.zero);
+    return SlideTransition(
+      position: animation.drive(
+        tween.chain(CurveTween(curve: Curves.ease)),
+      ),
+      child: child,
     );
   }
 }
