@@ -92,6 +92,32 @@ class ListScreen extends StatelessWidget {
           },
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.camera_alt,
+          color: Colors.black,
+        ),
+        onPressed: () {},
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        child: Row(
+          children: <Widget>[
+            Container(height: 48, width: 12),
+            IconButton(
+              icon: Icon(Icons.list),
+              onPressed: () {},
+            ),
+            Spacer(),
+            IconButton(
+              icon: Icon(Icons.calendar_today),
+              onPressed: () {},
+            ),
+            Container(height: 48, width: 12),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -103,16 +129,22 @@ class _ItemModal extends StatelessWidget {
       actions: <Widget>[
         CupertinoActionSheetAction(
           child: Text("Dodaj do grupy"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop(() {});
+          },
         ),
         CupertinoActionSheetAction(
           child: Text("Udostępnij"),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop(() {});
+          },
         ),
         CupertinoActionSheetAction(
           child: Text("Usuń"),
           isDestructiveAction: true,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pop(() {});
+          },
         ),
       ],
     );
