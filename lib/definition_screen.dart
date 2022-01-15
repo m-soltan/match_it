@@ -26,7 +26,16 @@ class DefinitionScreen extends StatelessWidget {
       ),
       body: Column(
         children: <Widget> [
-          Container(color: Colors.black, height: 200),
+          Container(
+            color: Colors.black,
+            height: 200,
+            width: double.infinity,
+            child: Icon(
+              Icons.play_circle,
+              color: Colors.white,
+              size: 56,
+            ),
+          ),
           Container(
             child: Text(
               title + " (12.06.2021)",
