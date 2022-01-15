@@ -5,6 +5,10 @@ import 'camera_screen.dart';
 import 'flashcards_screen.dart';
 
 class DefinitionScreen extends StatelessWidget {
+  final String title;
+
+  DefinitionScreen(this.title);
+
   @override
   Widget build(context) {
     var lines = <String> [
@@ -18,14 +22,14 @@ class DefinitionScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         leading: BackButton(),
-        title: Text("Całka"),
+        title: Text(title),
       ),
       body: Column(
         children: <Widget> [
           Container(color: Colors.black, height: 200),
           Container(
             child: Text(
-              "Całka (12.06.2021)",
+              title + " (12.06.2021)",
               style: Theme.of(context).textTheme.headline5,
             ),
           ),
