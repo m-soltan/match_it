@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 import 'calendar_screen.dart';
-import 'camera_screen.dart';
 import 'flashcards_screen.dart';
 
 class DefinitionScreen extends StatelessWidget {
@@ -59,14 +59,7 @@ class DefinitionScreen extends StatelessWidget {
           color: Colors.black,
         ),
         onPressed: () {
-          Navigator.of(context).push(
-            PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) {
-                return CameraScreen();
-              },
-              transitionsBuilder: _transitionsBuilder,
-            )
-          );
+          ImagePicker().pickImage(source: ImageSource.camera);
         },
       ),
       bottomNavigationBar: BottomAppBar(
