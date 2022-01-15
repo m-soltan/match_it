@@ -88,7 +88,7 @@ class ListScreen extends StatelessWidget {
                   Navigator.of(context).push(
                     PageRouteBuilder(
                       pageBuilder: (context, animation, secondaryAnimation) {
-                        return DefinitionScreen();
+                        return DefinitionScreen(i._s);
                       },
                       transitionsBuilder: _transitionsBuilder,
                     ),
