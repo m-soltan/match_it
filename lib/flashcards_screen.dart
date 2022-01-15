@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
 import 'calendar_screen.dart';
+import 'search_screen.dart';
 
 class FlashcardsScreen extends StatelessWidget {
   @override
@@ -10,6 +11,38 @@ class FlashcardsScreen extends StatelessWidget {
       appBar: AppBar(
         leading: BackButton(),
         title: Text("Fiszki"),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.search,
+              color: Theme.of(context).textTheme.bodyText2!.color,
+            ),
+            onPressed: () {
+              Navigator.of(context).push(
+                PageRouteBuilder(
+                  pageBuilder: (context, animation, secondaryAnimation) {
+                    return SearchScreen();
+                  },
+                  transitionsBuilder: _transitionsBuilder,
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Divider(),
+          ListTile(
+            leading: Icon(
+              Icons.check_box_outlined,
+              color: Colors.black,
+            ),
+            title: Text("Dom"),
+            trailing: Icon(Icons.more_vert, color: Colors.black),
+          ),
+          Divider(),
+        ],
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
