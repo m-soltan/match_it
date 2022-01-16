@@ -48,7 +48,7 @@ class CalendarScreen extends StatelessWidget {
               Navigator.of(context).push(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
-                    return SearchScreen();
+                    return SearchScreenStatefulWidget();
                   },
                   transitionsBuilder: _transitionsBuilder,
                 ),
