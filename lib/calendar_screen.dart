@@ -145,20 +145,6 @@ class CalendarScreen extends StatelessWidget {
                 );
               },
             ),
-            // Spacer(),
-            // IconButton(
-            //   icon: Icon(Icons.calendar_today),
-            //   onPressed: () {
-            //     Navigator.of(context).push(
-            //       PageRouteBuilder(
-            //         pageBuilder: (context, animation, secondaryAnimation) {
-            //           return CalendarScreen();
-            //         },
-            //         transitionsBuilder: _transitionsBuilder,
-            //       ),
-            //     );
-            //   },
-            // ),
             Container(height: 48, width: 12),
           ],
         ),
