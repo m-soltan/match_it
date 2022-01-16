@@ -51,10 +51,15 @@ class SearchScreen extends State<SearchScreenStatefulWidget> {
     log('data');
     super.initState();
     _controller.addListener(() {
-      final String text = _controller.text.toLowerCase();
-      print('siema: $text');
+      final String keyword = _controller.text.toLowerCase();
+      var filteredItems = names
+          .where((i) => i._s.toLowerCase().startsWith(keyword.toLowerCase()))
+          .toList();
       setState(() {
-        _items = names;
+        if (keyword.length == 0)
+          _items = names;
+        else
+          _items = filteredItems;
       });
     });
   }
