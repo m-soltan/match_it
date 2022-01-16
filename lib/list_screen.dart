@@ -17,7 +17,7 @@ class _Item {
   _Item(this._s);
 }
 
-var _items = <dynamic> [
+var _items = <dynamic>[
   _Header("B"),
   _Item("Banan"),
   _Item("Berło"),
@@ -47,7 +47,7 @@ class ListScreen extends StatelessWidget {
               Navigator.of(context).push(
                 PageRouteBuilder(
                   pageBuilder: (context, animation, secondaryAnimation) {
-                    return SearchScreen();
+                    return SearchScreenStatefulWidget();
                   },
                   transitionsBuilder: _transitionsBuilder,
                 ),
@@ -166,12 +166,10 @@ class ListScreen extends StatelessWidget {
   }
 
   SlideTransition _transitionsBuilder(
-    BuildContext context,
-    Animation<double> animation,
-    Animation<double> secondaryAnimation,
-    Widget child
-  ) {
-
+      BuildContext context,
+      Animation<double> animation,
+      Animation<double> secondaryAnimation,
+      Widget child) {
     // change the begin offset to slide in from a different direction
     var tween = Tween(begin: Offset(1.0, 0.0), end: Offset.zero);
     return SlideTransition(
