@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.match_it">
    <application
-        android:label="match_it"
+        android:label="MigNote"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
         <activity
